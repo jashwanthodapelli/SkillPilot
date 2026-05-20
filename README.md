@@ -1,178 +1,72 @@
+# SkillPilotAI
 
-# SkillPilot AI
+SkillPilotAI is a production-ready React + TypeScript app that creates career roadmaps with course links, beginner projects, progress tracking, profile/auth flows, and PDF export.
 
-AI-powered career roadmap and skill guidance platform.
+## Stack
 
-SkillPilot AI helps students and beginners generate personalized career learning roadmaps, track progress, explore useful courses, build projects, and prepare for interviews in a simple and beginner-friendly way.
+- React + TypeScript + Vite
+- React Router
+- Tailwind CSS
+- Shadcn-style Radix UI primitives
+- Framer Motion
+- Lucide Icons
+- Supabase auth/database with local demo fallback
 
----
+## Setup
 
-## Project Description
+1. Install dependencies:
 
-Many students want to start learning a career skill but do not know where to begin. Online roadmaps are often too complex, confusing, or advanced for beginners.
+   ```bash
+   npm install
+   ```
 
-SkillPilot AI solves this problem by creating a clear step-by-step roadmap for any career goal. Users can enter a career path such as **Data Scientist**, **Frontend Developer**, **Product Manager**, or **ML Engineer**, and the app generates a structured learning plan with beginner-friendly levels, tasks, courses, projects, skills, and interview preparation.
+2. Copy environment variables:
 
----
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Add Supabase values in `.env`:
+
+   ```bash
+   VITE_SUPABASE_URL=your-project-url
+   VITE_SUPABASE_ANON_KEY=your-anon-key
+   ```
+
+4. Run the Supabase migration in `supabase/migrations` to create the `roadmaps` table and row-level security policies.
+
+5. Start development:
+
+   ```bash
+   npm run dev
+   ```
+
+The app also works in demo mode without Supabase keys. Demo auth and roadmaps are stored in the browser, which is useful for local UI testing.
+
+## AI Generation
+
+By default the app uses a deterministic beginner-friendly roadmap generator so the UI works immediately. To connect a real AI backend, set:
+
+```bash
+VITE_AI_ENDPOINT=https://your-api.example.com/generate-roadmap
+VITE_AI_API_KEY=optional-token
+```
+
+The endpoint should accept `{ "career": "Data Scientist" }` and return the roadmap shape defined in `src/types/roadmap.ts`.
+
+## Scripts
+
+- `npm run dev` - start the Vite dev server
+- `npm run build` - type-check and build for production
+- `npm run preview` - preview the production build
+- `npm run lint` - run ESLint
+- `npm run format` - format the project
 
 ## Features
 
-- AI-style career roadmap generation
-- Beginner-friendly Level 1 and Level 2 guidance
-- Step-by-step learning levels
-- Progress tracking with XP system
-- Saved roadmaps dashboard
-- User authentication flow
-- Profile page
-- Course recommendations
-- Project ideas for portfolio building
-- Skill checklist
-- Interview questions and answers
-- Export roadmap as PDF
-- Responsive UI for mobile, tablet, and desktop
-- Toast notifications and loading states
-- Clean and reusable component structure
-- Supabase-ready backend integration
-- Local demo mode support
-
----
-
-## Screenshots
-
-Add your screenshots inside an `images/` folder and update the paths below.
-
-```md
-![Home Page](images/home.png)
-![Dashboard](images/dashboard.png)
-![Roadmap Page](images/roadmap.png)
-![Login Page](images/login.png)
-```
-
----
-
-## Tech Stack
-
-- React.js
-- TypeScript
-- Vite
-- Tailwind CSS
-- Shadcn-style UI components
-- React Router
-- Framer Motion
-- Lucide Icons
-- Supabase-ready authentication/database
-- jsPDF for PDF export
-
----
-
-## Development Note
-
-SkillPilot AI was initially planned as a MERN-style project, but it was later rebuilt using React + TypeScript with Supabase-ready backend services for cleaner architecture, faster development, and easier deployment.
-
----
-
-## Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/skillpilot-ai.git
-```
-
-### 2. Go to the project folder
-
-```bash
-cd skillpilot-ai
-```
-
-### 3. Install dependencies
-
-```bash
-npm install
-```
-
-### 4. Create environment file
-
-```bash
-cp .env.example .env
-```
-
-### 5. Start the development server
-
-```bash
-npm run dev
-```
-
----
-
-## Environment Variables
-
-Create a `.env` file and add the following values if you want to connect Supabase or an AI backend.
-
-```env
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-VITE_AI_ENDPOINT=
-VITE_AI_API_KEY=
-```
-
-The app also supports local demo mode, so it can run without Supabase keys for testing.
-
----
-
-## Folder Structure
-
-```bash
-src/
- ├── components/
- ├── pages/
- ├── layouts/
- ├── hooks/
- ├── services/
- ├── utils/
- ├── context/
- ├── assets/
- ├── styles/
- ├── data/
- ├── routes/
- └── types/
-```
-
----
-
-## Usage
-
-1. Open the app in the browser  
-2. Enter a career goal  
-3. Generate a roadmap  
-4. Follow the learning levels step by step  
-5. Track progress using the XP system  
-6. Explore courses, projects, skills, and interview questions  
-7. Export the roadmap as a PDF  
-
----
-
-## Future Improvements
-
-- Add real AI API integration for dynamic roadmap generation
-- Add resume improvement suggestions
-- Add AI interview practice
-- Add admin dashboard
-- Add community roadmap sharing
-- Add more detailed analytics for progress tracking
-
----
-
-## Author
-
-**Jashwanth Odapelli**  
-Computer Science Student
-
-GitHub: https://github.com/jashwanthodapelli  
-LinkedIn: https://www.linkedin.com/in/odapellijashwanth/
-
----
-
-## License
-
-This project is licensed under the MIT License.
+- Landing page with original SkillPilotAI hero, quick picks, feature cards, and CTA flow
+- Sign in/sign up, Google sign-in, protected routes, and profile
+- Dashboard with roadmap generation, saved roadmaps, delete actions, and loading states
+- Full roadmap page with XP, level unlocking, progress persistence, course/project cards, skills, interview prep, and PDF download
+- Responsive layouts for mobile, tablet, and desktop
+- SEO metadata, favicon, code splitting, and reusable services/components
